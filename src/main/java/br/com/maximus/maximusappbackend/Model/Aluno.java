@@ -1,6 +1,8 @@
 package br.com.maximus.maximusappbackend.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,10 @@ import java.util.Date;
 public class Aluno extends Usuario{
     private Boolean status;
     private Date dataVencimento;
+
+    @PositiveOrZero(message = "O valor do desconto não pode ser negativo...")
+    @NotNull(message = "O valor do desconto não pode ser nulo...")
+    private Double desconto;
 
     @ManyToOne
     @JoinColumn(name = "ADMINISTRADOR_idAdministrador")

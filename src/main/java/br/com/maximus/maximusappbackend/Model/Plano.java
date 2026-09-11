@@ -26,10 +26,6 @@ public class Plano {
     @NotNull(message = "O valor do plano não pode ser nulo...")
     private Double valor;
 
-    @PositiveOrZero(message = "O valor do desconto não pode ser negativo...")
-    @NotNull(message = "O valor do desconto não pode ser nulo...")
-    private Double desconto;
-
     private int qtdDiasSemana;
 
     @PositiveOrZero(message = "A validade em dias não pode ser negativa...")

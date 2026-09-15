@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service // Faltou isso!
-@RequiredArgsConstructor // Faltou isso!
+@Service
+@RequiredArgsConstructor
 public class ExercicioService {
     private final ExercicioRepository exercicioRepository;
 

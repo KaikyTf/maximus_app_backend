@@ -1,34 +1,54 @@
 package br.com.maximus.maximusappbackend.Model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@PrimaryKeyJoinColumn(name = "USUARIO_idUsuario")
-public class Aluno extends Usuario{
-    private Boolean status;
-    private Date dataVencimento;
+public class Aluno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAluno;
 
-    @PositiveOrZero(message = "O valor do desconto não pode ser negativo...")
-    @NotNull(message = "O valor do desconto não pode ser nulo...")
+    @NotBlank(message = "O nome do aluno não pode ficar em branco...")
+    private String nome;
+
+    @NotBlank(message = "O CPF não pode ficar em branco...")
+    private String cpf;
+
+    private String dtNascimento;
+    private String telefone;
+    private String cep;
+    private String uf;
+    private String rua;
+    private String bairro;
+    private String cidade;
+
     private Double desconto;
 
-    @ManyToOne
-    @JoinColumn(name = "ADMINISTRADOR_idAdministrador")
-    private Administrador administrador;
+    private String email;
+
+    @NotBlank(message = "O usuário não pode ficar em branco...")
+    private String usuario;
+
+    private String senha;
+    private Boolean status;
+
+    @Column(columnDefinition = "TEXT")
+    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "PLANO_idPlano")
     private Plano plano;
+
+    @ManyToOne
+    @JoinColumn(name = "ADMINISTRADOR_idAdministrador")
+    private Administrador administrador;
 }

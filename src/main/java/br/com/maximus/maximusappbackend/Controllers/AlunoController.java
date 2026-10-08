@@ -34,7 +34,7 @@ public class AlunoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> atualizar(@PathVariable Long id, @Valid @RequestBody Aluno aluno){
-        aluno.setIdAluno(id);
+        aluno.setIdUsuario(id);
 
         // Verifica se a senha veio vazia do front
         // Se sim, mantem

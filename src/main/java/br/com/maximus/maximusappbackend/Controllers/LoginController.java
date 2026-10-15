@@ -1,6 +1,7 @@
 package br.com.maximus.maximusappbackend.Controllers;
 
 import br.com.maximus.maximusappbackend.Model.Administrador;
+import br.com.maximus.maximusappbackend.Model.Professor;
 import br.com.maximus.maximusappbackend.Model.Usuario;
 import br.com.maximus.maximusappbackend.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,12 @@ public class LoginController {
             if (!user.getStatus())
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new LoginResponse(null, null, null, "Acesso bloqueado. Conta inativa!"));
 
-            String tipo = (user instanceof Administrador) ? "ADMIN" : "ALUNO";
+            String tipo = "ALUNO";
+            if (user instanceof Administrador) {
+                tipo = "ADMIN";
+            } else if (user instanceof Professor) {
+                tipo = "PROFESSOR";
+            }
 
             return ResponseEntity.ok(new LoginResponse(tipo, user.getIdUsuario(), user.getNome(), null));
         }

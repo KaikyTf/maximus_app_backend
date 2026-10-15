@@ -28,6 +28,7 @@ public class Usuario {
     @NotBlank(message = "O usuário não pode ficar em branco...")
     private String usuario;
 
+    @Column(unique = true)
     private String email;
     private String senha;
 

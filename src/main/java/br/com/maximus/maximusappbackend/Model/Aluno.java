@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,4 +26,12 @@ public class Aluno extends Usuario {
     @ManyToOne
     @JoinColumn(name = "ADMINISTRADOR_idAdministrador")
     private Administrador administrador;
+
+    @ManyToMany
+    @JoinTable(
+            name = "aluno_fichas",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "ficha_id")
+    )
+    private List<Ficha> fichas = new ArrayList<>();
 }

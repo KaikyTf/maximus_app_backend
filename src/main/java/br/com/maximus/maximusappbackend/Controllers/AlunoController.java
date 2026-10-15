@@ -1,9 +1,12 @@
 package br.com.maximus.maximusappbackend.Controllers;
 
 import br.com.maximus.maximusappbackend.Model.Aluno;
+import br.com.maximus.maximusappbackend.Model.Ficha;
+import br.com.maximus.maximusappbackend.Repositories.UsuarioRepository;
 import br.com.maximus.maximusappbackend.Services.AlunoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +54,18 @@ public class AlunoController {
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         alunoService.delete(id);
         return ResponseEntity.noContent().build(); //retorna 204
+    }
+
+    //FICHAS
+
+    @GetMapping("/{id}/fichas")
+    public ResponseEntity<List<Ficha>> listarFichasDoAluno(@PathVariable Long id) {
+        return ResponseEntity.ok(alunoService.listarFichasDoAluno(id));
+    }
+
+    @PostMapping("/{idAluno}/fichas/{idFicha}")
+    public ResponseEntity<Void> atribuirFicha(@PathVariable Long idAluno, @PathVariable Long idFicha) {
+        alunoService.atribuirFicha(idAluno, idFicha);
+        return ResponseEntity.ok().build();
     }
 }

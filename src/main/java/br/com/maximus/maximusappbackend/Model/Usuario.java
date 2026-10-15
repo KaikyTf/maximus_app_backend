@@ -38,7 +38,7 @@ public class Usuario {
     private String bairro;
     private String cidade;
 
-    private String dtNascimento;
+    private String dataNascimento;
     private String dataInicio;
 
     @Column(columnDefinition = "TEXT")

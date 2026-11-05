@@ -68,4 +68,10 @@ public class AlunoController {
         alunoService.atribuirFicha(idAluno, idFicha);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{idAluno}/fichas/{idFicha}")
+    public ResponseEntity<Void> removerFicha(@PathVariable Long idAluno, @PathVariable Long idFicha) {
+        alunoService.removerFicha(idAluno, idFicha);
+        return ResponseEntity.noContent().build();
+    }
 }

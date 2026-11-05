@@ -48,4 +48,9 @@ public class AlunoService {
 
         return aluno.getFichas();
     }
+    public void removerFicha(Long idAluno, Long idFicha) {
+        Aluno aluno = alunoRepository.findById(idAluno).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+        aluno.getFichas().removeIf(f -> f.getIdFicha().equals(idFicha));
+        alunoRepository.save(aluno);
+    }
 }

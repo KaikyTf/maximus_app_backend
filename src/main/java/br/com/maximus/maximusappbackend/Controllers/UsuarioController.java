@@ -1,5 +1,6 @@
 package br.com.maximus.maximusappbackend.Controllers;
 
+import br.com.maximus.maximusappbackend.Model.Usuario;
 import br.com.maximus.maximusappbackend.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,14 @@ public class UsuarioController {
 
         Map<String, String> resultado = usuarioService.verificarDuplicidade(cpf, usuario, email, idIgnorar);
         return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.buscarPorId(id));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+        return ResponseEntity.ok(usuarioService.atualizar(id, usuario));
     }
 }
